@@ -1,0 +1,20 @@
+.mat-expansion-panel-header-title {
+  width: 100%!important;
+}
+
+.panel-title {
+  width: 100%;
+  padding-top: 10px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.panel-content, .panel-content form, .panel-content mat-form-field {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}

@@ -1,0 +1,54 @@
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+.angular
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+.vscode/tasks.json
+.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+
+# Package Manager
+package.json
+package-lock.json
+yarn.lock
+
+# Angular-related
+/dist
+/documentation
+/coverage
+**/assets/**/*
+.angular/*
+
+src/app/lib/**
+ng-package.json
+public-api.ts
+tsconfig.lib.json
+tsconfig.lib.prod.json
+tsconfig.doc.json
+tsconfig.app.json
+tsconfig.json
+tslint.json
+tsconfig.spec.json
+angular.json
+commitlint.config.js
+e2e/**
+cypress/results/report.json
+
+Dockerfile*
+docker-compose*.yml
+resources/*
+.eslintrc.js
+.nycrc
+.versionrc.json
+bitbucket-pipelines.yml
+CHANGELOG.md
+README.md
