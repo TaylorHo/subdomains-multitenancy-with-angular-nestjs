@@ -13,9 +13,9 @@
         <form>
           <mat-form-field>
             <mat-label>Sua Empresa</mat-label>
-            <input matInput placeholder="Ex. tenant" value="">
+            <input matInput #loginInput placeholder="Ex. tenant" value="">
           </mat-form-field>
-          <button mat-raised-button type="button" color="primary">Login</button>
+          <button mat-raised-button type="button" (click)="login(loginInput)" color="primary">Login</button>
         </form>
       </div>
     </mat-expansion-panel>
@@ -24,7 +24,7 @@
       <mat-expansion-panel-header>
         <mat-panel-title>
           <div class="panel-title">
-            <h4>Register</h4>
+            <h4>Cadastro</h4>
           </div>
         </mat-panel-title>
       </mat-expansion-panel-header>
@@ -32,9 +32,9 @@
         <form>
           <mat-form-field>
             <mat-label>Nome da Sua Empresa</mat-label>
-            <input matInput placeholder="Ex. tenant" value="">
+            <input matInput #registerInput placeholder="Ex. tenant" value="">
           </mat-form-field>
-          <button mat-raised-button type="button" color="primary">Criar Empresa</button>
+          <button mat-raised-button type="button" (click)="register(registerInput)" color="primary">Criar Empresa</button>
         </form>
       </div>    </mat-expansion-panel>
   

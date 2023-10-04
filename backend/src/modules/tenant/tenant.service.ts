@@ -34,7 +34,10 @@ export class TenantService {
 
   async getTenant(id: string): Promise<Tenant | null> {
     try {
-      return await this.tenantRepository.findOneBy({ id });
+      const tenant = await this.tenantRepository.findOneBy({ id });
+
+      if (tenant) return tenant;
+      throw new NotFoundException();
     } catch (error) {
       throw new NotFoundException(error.message);
     }
@@ -42,7 +45,10 @@ export class TenantService {
 
   async getSubTenant(id: string): Promise<SubTenant | null> {
     try {
-      return await this.subTenantRepository.findOneBy({ id });
+      const tenant = await this.subTenantRepository.findOneBy({ id });
+
+      if (tenant) return tenant;
+      throw new NotFoundException();
     } catch (error) {
       throw new NotFoundException(error.message);
     }

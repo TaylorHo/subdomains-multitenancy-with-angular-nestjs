@@ -7,10 +7,12 @@ import { PagesRoutes } from './pages.routing.module';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MainComponent } from './main/main.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
-  declarations: [AuthComponent],
-  exports: [AuthComponent],
+  declarations: [AuthComponent, MainComponent],
+  exports: [AuthComponent, MainComponent],
   imports: [
     CommonModule,
     MatExpansionModule,
@@ -18,6 +20,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    MatProgressSpinnerModule,
   ],
 })
 export class PagesModule {}
