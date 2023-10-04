@@ -1,2 +1,23 @@
 <mat-spinner *ngIf="loading"></mat-spinner>
 
+
+<mat-card>
+  <mat-card-content>
+    <div class="new-sub-tenant">
+      <form>
+        <mat-form-field>
+          <mat-label>Nome da fábrica</mat-label>
+          <input matInput #subTenantInput placeholder="Ex. tenant1" value="">
+        </mat-form-field>
+        
+        <button mat-fab color="primary" type="button" (click)="createSubTenant(subTenantInput)" aria-label="Example icon button with a delete icon">
+          <mat-icon>add</mat-icon>
+        </button>
+      </form>
+    </div>
+
+    <section class="sub-tenants-section" *ngIf="subTenants.length > 0">
+      <button *ngFor="let tenant of subTenants" mat-stroked-button color="primary">{{ tenant.id }}</button>
+    </section>
+  </mat-card-content>
+</mat-card>

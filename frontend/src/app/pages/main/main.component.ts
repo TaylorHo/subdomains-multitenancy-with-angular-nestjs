@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { catchError, throwError } from 'rxjs';
 import ISubTenant from 'src/app/models/sub-tenant.model';
 import { HelperService } from 'src/app/services/helper.service';
 import { TenantService } from 'src/app/services/tenant.service';
 import { VerificationsService } from 'src/app/services/verifications.service';
-import { environment } from 'src/environment/environment';
 
 @Component({
   selector: 'app-main',
@@ -16,10 +17,11 @@ export class MainComponent implements OnInit {
   public subTenants: ISubTenant[] = [];
 
   constructor(
-    private router: Router,
-    private verification: VerificationsService,
-    private tenantService: TenantService,
-    private helper: HelperService,
+    private readonly router: Router,
+    private readonly verification: VerificationsService,
+    private readonly tenantService: TenantService,
+    private readonly helper: HelperService,
+    private readonly toast: MatSnackBar,
   ) {}
 
   async ngOnInit(): Promise<void | boolean> {
@@ -34,5 +36,37 @@ export class MainComponent implements OnInit {
     });
 
     this.loading = false;
+  }
+
+  public async createSubTenant(element: HTMLInputElement) {
+    if (!element.value) return this.error('Insira o nome da sua empresa');
+    const parent = this.helper.getTenant();
+
+    this.tenantService.createOneSub(element.value, parent!)
+    .pipe(
+      catchError(err => {
+        if (err.status === 409) {
+          this.error('Já existe uma fábrica com esse nome.');
+        } else {
+          this.genericError();
+        }
+        return throwError(err);
+      })
+    )
+    .subscribe((newSubTenant: ISubTenant) => {
+      this.subTenants.push(newSubTenant);
+    });
+  }
+
+  private genericError() {
+    this.toast.open('Empresa Já existente. Escolha outro nome', 'Okay', {
+      duration: 3000
+    });
+  }
+
+  private error(text: string) {
+    this.toast.open(text, 'Okay', {
+      duration: 3000
+    });
   }
 }
