@@ -39,6 +39,17 @@ export class TenantService {
       const foundSubTenant = await this.subTenantRepository.findOneBy({ id: createSubTenantDto.id });
       if (foundSubTenant) throw new ConflictException();
 
+      const foundParentTenant = await this.tenantRepository.findOneBy({ id: createSubTenantDto.parent });
+      if (!foundParentTenant) throw new NotFoundException();
+
+      this.tenantRepository.save({
+        id: foundParentTenant.id,
+        child: [
+          ...foundParentTenant.child,
+          createSubTenantDto.id,
+        ]
+      });
+
       const subTenant =  this.subTenantRepository.create();
       subTenant.id = createSubTenantDto.id;
       subTenant.parent = createSubTenantDto.parent;
@@ -47,9 +58,8 @@ export class TenantService {
       return subTenant;
 
     } catch (error) {
-      if (error instanceof ConflictException) {
-        throw new ConflictException();
-      }
+      if (error instanceof ConflictException) throw new ConflictException();
+      if (error instanceof NotFoundException) throw new NotFoundException();
       throw new BadGatewayException(error.message);
     }
   }
