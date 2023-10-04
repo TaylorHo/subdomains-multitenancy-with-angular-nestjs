@@ -29,13 +29,21 @@ export class TenantService {
   }
 
   public getOneSub(id: string): Observable<ISubTenant> {
-    return this.http.get<ISubTenant>(this.api + '/tenant/sub/' + id);
+    return this.http.get<ISubTenant>(this.api + '/sub/' + id);
   }
 
   public createOneSub(id: string, parent: string): Observable<ISubTenant> {
-    return this.http.post<ISubTenant>(this.api + '/tenant/sub/', {
+    return this.http.post<ISubTenant>(this.api + '/sub/', {
       id,
       parent
     });
+  }
+
+  public getAll(): Observable<ITenant[]> {
+    return this.http.get<ITenant[]>(this.api + '/tenant/');
+  }
+
+  public getAllSub(id: string): Observable<ISubTenant[]> {
+    return this.http.get<ISubTenant[]>(this.api + '/sub/');
   }
 }
