@@ -1,0 +1,11 @@
+test/
+
+.eslintrc.js
+.gitignore
+.prettierrc
+
+node_modules/
+.angular/
+dist/
+*.log
+.vscode/

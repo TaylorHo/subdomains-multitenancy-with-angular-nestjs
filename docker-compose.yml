@@ -13,6 +13,30 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
 
+  backend:
+    container_name: backend
+    restart: unless-stopped
+    build:
+      context: ./backend
+    networks:
+      - app-net
+    ports:
+      - '3000:3000'
+    depends_on:
+      - postgres
+
+  frontend:
+    container_name: frontend
+    restart: unless-stopped
+    build:
+      context: ./frontend
+    networks:
+      - app-net
+    ports:
+      - '80:80'
+    depends_on:
+      - backend
+
 networks:
   app-net:
     name: external-network

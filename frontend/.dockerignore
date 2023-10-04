@@ -1,0 +1,13 @@
+.editorconfig
+.eslintignore
+.eslintrc.js
+.gitignore
+.prettierignore
+.prettierrc.json
+commitlint.config.js
+
+node_modules/
+.angular/
+dist/
+*.log
+.vscode/
