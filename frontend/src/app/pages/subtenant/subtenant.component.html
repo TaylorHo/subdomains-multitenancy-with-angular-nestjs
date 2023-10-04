@@ -1,0 +1,10 @@
+<mat-spinner *ngIf="loading"></mat-spinner>
+
+<div *ngIf="!loading">
+  <h2>Sub Tenant: {{ tenant }}</h2>
+
+  <button mat-stroked-button color="primary" (click)="router.navigate(['/'])">
+    <mat-icon>arrow_back</mat-icon>
+    Voltar
+  </button>
+</div>

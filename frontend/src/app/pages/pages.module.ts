@@ -11,10 +11,11 @@ import { MainComponent } from './main/main.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { SubtenantComponent } from './subtenant/subtenant.component';
 
 @NgModule({
-  declarations: [AuthComponent, MainComponent],
-  exports: [AuthComponent, MainComponent],
+  declarations: [AuthComponent, MainComponent, SubtenantComponent],
+  exports: [AuthComponent, MainComponent, SubtenantComponent],
   imports: [
     CommonModule,
     MatExpansionModule,

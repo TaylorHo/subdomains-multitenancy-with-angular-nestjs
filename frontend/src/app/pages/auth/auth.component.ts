@@ -34,7 +34,7 @@ export class AuthComponent implements OnInit {
   }
 
   private error() {
-    this.toast.open('Insira o nome da sua empresa', 'Okay', {
+    this.toast.open('Insira o nome do seu Tenant', 'Okay', {
       duration: 3000,
     });
   }

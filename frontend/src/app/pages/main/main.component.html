@@ -1,12 +1,13 @@
 <mat-spinner *ngIf="loading"></mat-spinner>
 
-
-<mat-card>
+<mat-card *ngIf="!loading">
   <mat-card-content>
     <div class="new-sub-tenant">
+      <h2>{{ tenant }}</h2>
+
       <form>
         <mat-form-field>
-          <mat-label>Nome da fábrica</mat-label>
+          <mat-label>Nome do Sub Tenant</mat-label>
           <input matInput #subTenantInput placeholder="Ex. tenant1" value="">
         </mat-form-field>
         
@@ -17,7 +18,7 @@
     </div>
 
     <section class="sub-tenants-section" *ngIf="subTenants.length > 0">
-      <button *ngFor="let tenant of subTenants" mat-stroked-button color="primary">{{ tenant.id }}</button>
+      <button *ngFor="let tenant of subTenants" (click)="goToSubTenantPage(tenant.id)" mat-stroked-button color="primary">{{ tenant.id }}</button>
     </section>
   </mat-card-content>
 </mat-card>

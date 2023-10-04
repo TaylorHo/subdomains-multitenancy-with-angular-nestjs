@@ -22,7 +22,7 @@ export class AuthService {
       .pipe(
         catchError(err => {
           if (err.status === 404) {
-            this.error('Empresa não encontrada');
+            this.error('Tenant não encontrado');
           } else {
             this.genericError();
           }
@@ -40,7 +40,7 @@ export class AuthService {
       .pipe(
         catchError(err => {
           if (err.status === 409) {
-            this.error('Empresa Já existente. Escolha outro nome.');
+            this.error('Tenant já existente. Escolha outro nome.');
           } else {
             this.genericError();
           }
@@ -53,7 +53,7 @@ export class AuthService {
   }
 
   private genericError() {
-    this.toast.open('Empresa Já existente. Escolha outro nome', 'Okay', {
+    this.toast.open('Tenant já existente. Escolha outro nome', 'Okay', {
       duration: 3000
     });
   }

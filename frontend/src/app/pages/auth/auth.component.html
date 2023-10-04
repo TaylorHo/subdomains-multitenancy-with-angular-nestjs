@@ -12,7 +12,7 @@
       <div class="panel-content">
         <form>
           <mat-form-field>
-            <mat-label>Sua Empresa</mat-label>
+            <mat-label>Seu Tenant</mat-label>
             <input matInput #loginInput placeholder="Ex. tenant" value="">
           </mat-form-field>
           <button mat-raised-button type="button" (click)="login(loginInput)" color="primary">Login</button>
@@ -31,10 +31,10 @@
       <div class="panel-content">
         <form>
           <mat-form-field>
-            <mat-label>Nome da Sua Empresa</mat-label>
+            <mat-label>Nome do Seu Tenant</mat-label>
             <input matInput #registerInput placeholder="Ex. tenant" value="">
           </mat-form-field>
-          <button mat-raised-button type="button" (click)="register(registerInput)" color="primary">Criar Empresa</button>
+          <button mat-raised-button type="button" (click)="register(registerInput)" color="primary">Criar Tenant</button>
         </form>
       </div>
     </mat-expansion-panel>

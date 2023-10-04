@@ -15,6 +15,7 @@ import { VerificationsService } from 'src/app/services/verifications.service';
 export class MainComponent implements OnInit {
   public loading: boolean = true;
   public subTenants: ISubTenant[] = [];
+  public tenant: string = '';
 
   constructor(
     private readonly router: Router,
@@ -25,13 +26,13 @@ export class MainComponent implements OnInit {
   ) {}
 
   async ngOnInit(): Promise<void | boolean> {
-    const tenant = this.helper.getTenant();
-    if (!tenant) return this.router.navigate(['login']);
+    this.tenant = this.helper.getTenant() ?? '';
+    if (!this.tenant) return this.router.navigate(['login']);
 
-    const doesTenantExists = await this.verification.doesTenantExist(tenant);
+    const doesTenantExists = await this.verification.doesTenantExist(this.tenant);
     if (!doesTenantExists) this.router.navigate(['login']);
 
-    this.tenantService.getAllSub(tenant).subscribe((tenants) => {
+    this.tenantService.getAllSub(this.tenant).subscribe((tenants) => {
       this.subTenants = tenants;
     });
 
@@ -39,14 +40,13 @@ export class MainComponent implements OnInit {
   }
 
   public async createSubTenant(element: HTMLInputElement) {
-    if (!element.value) return this.error('Insira o nome da sua empresa');
-    const parent = this.helper.getTenant();
+    if (!element.value) return this.error('Insira o nome do seu Tenant');
 
-    this.tenantService.createOneSub(element.value, parent!)
+    this.tenantService.createOneSub(element.value, this.tenant)
     .pipe(
       catchError(err => {
         if (err.status === 409) {
-          this.error('Já existe uma fábrica com esse nome.');
+          this.error('Já existe um Sub Tenant com esse nome.');
         } else {
           this.genericError();
         }
@@ -58,8 +58,12 @@ export class MainComponent implements OnInit {
     });
   }
 
+  public goToSubTenantPage(tenant: string) {
+    this.router.navigate(['sub', tenant]);
+  }
+
   private genericError() {
-    this.toast.open('Empresa Já existente. Escolha outro nome', 'Okay', {
+    this.toast.open('Tenant Já existente. Escolha outro nome', 'Okay', {
       duration: 3000
     });
   }
