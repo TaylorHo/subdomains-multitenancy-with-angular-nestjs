@@ -37,6 +37,6 @@ PS: Entende-se como um novo registro do Tipo A, com valor "*" (wildcard) redirec
 
 ### 💭 Reflexão
 
-A separão dos tenants em subdomínios dá a ideia de exclusividade para cada cliente/tenant.
+A separação dos tenants em subdomínios dá a ideia de exclusividade para cada cliente/tenant.
 
 Além disso, já é um ótimo início para a implantação de camadas extras de segurança, como utilização de bancos ou scheemas separados entre clientes, aumentando a segurança dos dados salvos, garantindo também que violações de dados (data breaches) sejam menos danosas (e danosas a menos pessoas/clientes).
