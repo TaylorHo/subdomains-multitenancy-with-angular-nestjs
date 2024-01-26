@@ -6,14 +6,14 @@ import { SubtenantComponent } from './subtenant/subtenant.component';
 export const PagesRoutes: Routes = [
   {
     path: '',
-    component: MainComponent,
+    component: MainComponent
   },
   {
     path: 'login',
-    component: AuthComponent,
+    component: AuthComponent
   },
   {
     path: 'sub/:id',
-    component: SubtenantComponent,
+    component: SubtenantComponent
   }
 ];

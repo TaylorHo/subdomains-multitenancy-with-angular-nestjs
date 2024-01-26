@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute, Router } from '@angular/router';
 import { catchError, throwError } from 'rxjs';
 import { HelperService } from 'src/app/services/helper.service';
 import { TenantService } from 'src/app/services/tenant.service';
@@ -19,7 +19,7 @@ export class SubtenantComponent implements OnInit {
     private readonly route: ActivatedRoute,
     private readonly tenantService: TenantService,
     private readonly helper: HelperService,
-    private readonly toast: MatSnackBar,
+    private readonly toast: MatSnackBar
   ) {
     this.route.params.subscribe(params => {
       if (params && params['id']) {
@@ -38,22 +38,23 @@ export class SubtenantComponent implements OnInit {
     const parent = this.helper.getTenant();
     if (!parent) return this.router.navigate(['login']);
 
-    this.tenantService.getOneSub(this.tenant)
-    .pipe(
-      catchError(err => {
-        if (err.status === 404) {
-          this.toast.open('Sub Tenant inexistente.', 'Okay', {
-            duration: 3000
-          });
-          this.router.navigate(['']);
-        }
+    this.tenantService
+      .getOneSub(this.tenant)
+      .pipe(
+        catchError(err => {
+          if (err.status === 404) {
+            this.toast.open('Sub Tenant inexistente.', 'Okay', {
+              duration: 3000
+            });
+            this.router.navigate(['']);
+          }
+          this.loading = false;
+          return throwError(err);
+        })
+      )
+      .subscribe(() => {
         this.loading = false;
-        return throwError(err);
-      })
-    )
-    .subscribe(() => {
-      this.loading = false;
-    });
+      });
 
     return;
   }

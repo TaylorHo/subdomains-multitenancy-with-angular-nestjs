@@ -22,7 +22,7 @@ export class MainComponent implements OnInit {
     private readonly verification: VerificationsService,
     private readonly tenantService: TenantService,
     private readonly helper: HelperService,
-    private readonly toast: MatSnackBar,
+    private readonly toast: MatSnackBar
   ) {}
 
   async ngOnInit(): Promise<void | boolean> {
@@ -32,7 +32,7 @@ export class MainComponent implements OnInit {
     const doesTenantExists = await this.verification.doesTenantExist(this.tenant);
     if (!doesTenantExists) this.router.navigate(['login']);
 
-    this.tenantService.getAllSub(this.tenant).subscribe((tenants) => {
+    this.tenantService.getAllSub(this.tenant).subscribe(tenants => {
       this.subTenants = tenants;
     });
 
@@ -42,20 +42,21 @@ export class MainComponent implements OnInit {
   public async createSubTenant(element: HTMLInputElement) {
     if (!element.value) return this.error('Insira o nome do seu Tenant');
 
-    this.tenantService.createOneSub(element.value, this.tenant)
-    .pipe(
-      catchError(err => {
-        if (err.status === 409) {
-          this.error('Já existe um Sub Tenant com esse nome.');
-        } else {
-          this.genericError();
-        }
-        return throwError(err);
-      })
-    )
-    .subscribe((newSubTenant: ISubTenant) => {
-      this.subTenants.push(newSubTenant);
-    });
+    this.tenantService
+      .createOneSub(element.value, this.tenant)
+      .pipe(
+        catchError(err => {
+          if (err.status === 409) {
+            this.error('Já existe um Sub Tenant com esse nome.');
+          } else {
+            this.genericError();
+          }
+          return throwError(err);
+        })
+      )
+      .subscribe((newSubTenant: ISubTenant) => {
+        this.subTenants.push(newSubTenant);
+      });
   }
 
   public goToSubTenantPage(tenant: string) {

@@ -25,7 +25,7 @@ import { SubtenantComponent } from './subtenant/subtenant.component';
     MatButtonModule,
     MatProgressSpinnerModule,
     MatCardModule,
-    MatIconModule,
-  ],
+    MatIconModule
+  ]
 })
 export class PagesModule {}

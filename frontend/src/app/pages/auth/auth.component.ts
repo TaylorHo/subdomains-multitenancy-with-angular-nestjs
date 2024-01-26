@@ -14,7 +14,7 @@ export class AuthComponent implements OnInit {
     private readonly auth: AuthService,
     private readonly toast: MatSnackBar,
     private readonly helper: HelperService,
-    private readonly router: Router,
+    private readonly router: Router
   ) {}
 
   ngOnInit(): void {
@@ -25,17 +25,17 @@ export class AuthComponent implements OnInit {
 
   public login(element: HTMLInputElement) {
     if (!element.value) return this.error();
-    this.auth.login(element.value)
+    this.auth.login(element.value);
   }
 
   public register(element: HTMLInputElement) {
     if (!element.value) return this.error();
-    this.auth.register(element.value)
+    this.auth.register(element.value);
   }
 
   private error() {
     this.toast.open('Insira o nome do seu Tenant', 'Okay', {
-      duration: 3000,
+      duration: 3000
     });
   }
 }

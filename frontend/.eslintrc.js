@@ -15,21 +15,11 @@ module.exports = {
         'plugin:@angular-eslint/template/process-inline-templates',
         'plugin:prettier/recommended'
       ],
-      plugins: ['unused-imports'],
+      plugins: [],
       rules: {
         'no-unused-vars': 'off',
         'no-undef': 'off',
         'no-useless-escape': 'off',
-        'unused-imports/no-unused-imports': 'error',
-        'unused-imports/no-unused-vars': [
-          'warn',
-          {
-            vars: 'all',
-            varsIgnorePattern: '^_',
-            args: 'after-used',
-            argsIgnorePattern: '^_'
-          }
-        ],
         '@angular-eslint/component-selector': [
           'error',
           {
